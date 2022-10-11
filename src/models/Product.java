@@ -2,17 +2,17 @@ package models;
 
 import java.io.Serializable;
 
-public class MotelRoom implements Serializable {
+public class Product implements Serializable {
     private int id;
     private String name;
     private int price;
 
 
 
-    public MotelRoom() {
+    public Product() {
     }
 
-    public MotelRoom(int id, String name, int price) {
+    public Product(int id, String name, int price) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -44,10 +44,10 @@ public class MotelRoom implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Product{" +
+        return "Thông tin sản phẩm [" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                '}';
+                ", name= " + name +
+                ", price= " + price +
+                ']';
     }
 }

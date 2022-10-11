@@ -16,7 +16,7 @@ public class ReadAndWrite<E> {
         }
     }
 
-    public ArrayList<E> read(File file) {
+    public  ArrayList<E> read(File file) {
         try {
             //Kết nối
             FileInputStream ketnoi = new FileInputStream(file);
