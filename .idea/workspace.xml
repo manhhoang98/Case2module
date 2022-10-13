@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1a796494-86cd-4bb9-bf01-ba69121922fa" name="Changes" comment="">
+    <list default="true" id="1a796494-86cd-4bb9-bf01-ba69121922fa" name="Changes" comment="ok">
+      <change afterPath="$PROJECT_DIR$/src/soft/SoftByPriceAscending.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/soft/SoftByPriceDescending.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/ManagerAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ManagerAccount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/ManagerProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ManagerProduct.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/filetext/account.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/filetext/account.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/filetext/giohang.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/filetext/giohang.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/filetext/product.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/filetext/product.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/ReadAndWrite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/ReadAndWrite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/validate/ValidateAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/validate/ValidateAccount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/giaodien.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/giaodien.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/giaodien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/giaodien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/giaodien.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/giaodien.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +57,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "false",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/admin/Desktop/Case-Module-2",
+    "last_opened_file_path": "C:/Users/admin/Desktop/ThucHanhMD2",
     "nodejs_package_manager_path": "npm"
   }
 }]]></component>
@@ -89,8 +89,17 @@
       <workItem from="1665110565350" duration="197000" />
       <workItem from="1665133971141" duration="667000" />
       <workItem from="1665384915498" duration="8368000" />
-      <workItem from="1665429456512" duration="19012000" />
+      <workItem from="1665429456512" duration="34629000" />
+      <workItem from="1665567499852" duration="20526000" />
     </task>
+    <task id="LOCAL-00001" summary="ok">
+      <created>1665507226250</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1665507226250</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -107,12 +116,20 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="ok" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.io.EOFException" package="java.io" />
           <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="3" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>

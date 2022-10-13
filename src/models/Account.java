@@ -1,6 +1,8 @@
 package models;
 
 
+import view.Menu;
+
 import java.io.Serializable;
 
 public class Account implements Serializable {
@@ -94,16 +96,16 @@ public class Account implements Serializable {
 
     @Override
     public String toString() {
-        return "Account[" +
-                "username = " + username +
-                ", password = " + password +
-                ", name = " + name +
-                ", age = " + age +
-                ", gender = " + gender +
-                ", PhoneNumber = " + PhoneNumber +
-                ", address = " + address +
-                ", role = " + role +
-                ']';
+        return Menu.ANSI_BLUE+
+                "Tên đăng nhập : " + username +
+                ", Mật khẩu : " + password +
+                ", Tên người dùng : " + name +
+                ", Tuổi : " + age +
+                ", Giới tính :  " + gender +
+                ", Số điện thoại : " + PhoneNumber +
+                ", Địa chỉ : " + address +
+                ", Quyền : " + role +
+                Menu.ANSI_RESET;
     }
 }
 

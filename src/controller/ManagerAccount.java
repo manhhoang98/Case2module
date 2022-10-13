@@ -10,10 +10,10 @@ import java.util.Scanner;
 public class ManagerAccount {
     File file = new File("C:\\Users\\admin\\Desktop\\casestudy\\src\\filetext\\account.txt");
     ReadAndWrite<Account> readAndWrite = new ReadAndWrite<>();
-    //Tạo list đọc dữ liệu trong file
     ArrayList<Account> accounts =readAndWrite.read(file);
     Scanner scanner = new Scanner(System.in);
     ValidateAccount validateAccount = new ValidateAccount();
+    Account admin = new Account("manh08112003","Manh@1234","mạnh","18","Male","0357061291","BacGiang","admin");
 
     public Account login(){
         String username = validateAccount.UserName();
@@ -40,9 +40,7 @@ public class ManagerAccount {
         String gender = validateAccount.gender();
         String phoneNumber = validateAccount.PhoneNumber();
         String address = validateAccount.Address();
-        System.out.println("Nhập role");
-        String role = scanner.nextLine();
-        return new Account(username,password,name,age,gender,phoneNumber,address,role);
+        return new Account(username,password,name,age,gender,phoneNumber,address,"user");
 
     }
 
@@ -57,8 +55,8 @@ public class ManagerAccount {
 
     public void addAccount(Account account){
         accounts.add(account);
+        accounts.add(admin);
         readAndWrite.write(file,accounts);
-
     }
 
     public  void showAccount(){
@@ -92,8 +90,13 @@ public class ManagerAccount {
             name = scanner.nextLine();
             index = Integer.parseInt(findIndexByName(name));
             if(index != -1){
-                accounts.remove(index);
-                System.err.println("Xóa thành công !!!");
+                System.err.print("Xác nhận xóa tài khoản :");
+                System.err.println("Y/N");
+                String x = scanner.nextLine();
+                if (x.equalsIgnoreCase("Y")){
+                    accounts.remove(index);
+                    System.out.println("Xóa thành công !!!");
+                }
                 break;
             }else {
                 System.err.println("Không tìm thấy tài khoản");

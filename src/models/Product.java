@@ -1,21 +1,33 @@
 package models;
 
+import view.Menu;
+
 import java.io.Serializable;
 
 public class Product implements Serializable {
     private int id;
     private String name;
     private int price;
+    private int amount;
 
 
 
     public Product() {
     }
 
-    public Product(int id, String name, int price) {
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public Product(int id, String name, int price, int amount) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.amount=amount;
     }
 
     public int getId() {
@@ -44,10 +56,11 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "Thông tin sản phẩm [" +
-                "id=" + id +
-                ", name= " + name +
-                ", price= " + price +
-                ']';
+        return Menu.ANSI_BLUE+
+                "Id sản phẩm : " + id +
+                ", Tên sản phẩm : " + name +
+                ", Giá sản phẩm : " + price +
+                ", Số lượng : "+amount+
+                Menu.ANSI_RESET;
     }
 }

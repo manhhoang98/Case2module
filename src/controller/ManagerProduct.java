@@ -2,6 +2,8 @@ package controller;
 
 import io.ReadAndWrite;
 import models.Product;
+import soft.SoftByPriceAscending;
+import soft.SoftByPriceDescending;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -11,9 +13,13 @@ public class ManagerProduct {
     File file = new File("C:\\Users\\admin\\Desktop\\casestudy\\src\\filetext\\product.txt");
 
     File file1 = new File("C:\\Users\\admin\\Desktop\\casestudy\\src\\filetext\\giohang.txt");
+
+    File fileTurnover=new File("C:\\Users\\admin\\Desktop\\casestudy\\src\\filetext\\turnover.txt");
     ReadAndWrite<Product> readAndWrite = new ReadAndWrite<>();
     ArrayList<Product> products = readAndWrite.read(file);
-    ArrayList<Product> Giohang = readAndWrite.read(file1);
+    ArrayList<Product> cart = readAndWrite.read(file1);
+
+    ArrayList<Product> turnover = readAndWrite.read(fileTurnover);
     Scanner scanner = new Scanner(System.in);
 
     public void show() {
@@ -41,34 +47,47 @@ public class ManagerProduct {
         int id;
         int index;
         while (true) {
-            System.out.println("Nhập id :");
+            System.out.println(">Nhập id :");
             id = Integer.parseInt(scanner.nextLine());
             index = findIndexById(id);
             if (index == -1) {
                 break;
             }
-            System.out.println("Nhập trùng id rồi.");
+            System.err.println("Nhập trùng id rồi.");
         }
-        System.out.println("Nhập name");
+        System.out.println(">Nhập name");
         String name = scanner.nextLine();
-        System.out.println("Nhập price");
+        System.out.println(">Nhập price");
         int price = Integer.parseInt(scanner.nextLine());
-        return new Product(id, name, price);
+        System.out.println(">Nhập số lượng sản phẩm:");
+        int amount = Integer.parseInt(scanner.nextLine());
+        return new Product(id, name, price,amount);
+    }
+    public  Product create1(){
+        System.out.println(">Nhập id :");
+        int   id = Integer.parseInt(scanner.nextLine());
+        System.out.println(">Nhập name :");
+        String name = scanner.nextLine();
+        System.out.println(">Nhập price :");
+        int price = Integer.parseInt(scanner.nextLine());
+        System.out.println(">Nhập số lượng sản phẩm :");
+        int amount = Integer.parseInt(scanner.nextLine());
+        return new Product(id, name, price,amount);
     }
 
     public void edit() {
         int id;
         int index;
         while (true){
-            System.out.println("Nhập id :");
+            System.out.println(">Nhập id :");
             id = Integer.parseInt(scanner.nextLine());
             index = findIndexById(id);
             if (index != -1) {
-                products.set(index, create());
+                products.set(index, create1());
                 System.out.println("Sửa thành công");
                 break;
             }else {
-                System.out.println("Không tìm thấy id sản phẩm ");
+                System.err.println("Không tìm thấy id sản phẩm ");
             }
         }
 
@@ -78,15 +97,15 @@ public class ManagerProduct {
         int id;
         int index;
         while (true){
-            System.out.println("Nhập id sản phẩm muốn xóa");
+            System.out.println(">Nhập id sản phẩm muốn xóa");
             id = Integer.parseInt(scanner.nextLine());
             index = findIndexById(id);
             if (index != -1){
                 products.remove(index);
-                System.out.println("Xóa thành công ");
+                System.out.println(">Xóa thành công ");
                 break;
             }else{
-                System.err.println("Không có id sản phẩm cần xóa");
+                System.err.println("Không có id sản phẩm cần xóa!");
             }
         }
         readAndWrite.write(file,products);
@@ -94,54 +113,86 @@ public class ManagerProduct {
 
     }
 
-    public void money() {
-
+    public double money() {
+        turnover = readAndWrite.read(fileTurnover);
+        System.out.println("Lịch sử bán hàng : ");
+        for (int i = 0; i < turnover.size(); i++) {
+            System.out.println(turnover.get(i).toString());
+        }
+        double doanhthu=0.0;;
+        for (int i = 0 ;i<turnover.size();i++){
+            doanhthu+=turnover.get(i).getPrice();
+        }
+        System.out.println("Doanh thu là :" +doanhthu);
+        return doanhthu;
     }
 
 
     public void buyProduct() {
-        System.out.println("Nhập tên sản phẩm muốn thêm vào giỏ hàng :");
+        show();
+        System.out.println(">Nhập tên sản phẩm muốn thêm vào giỏ hàng :");
         String name = scanner.nextLine();
-
+        int choice = 0;
         for (int i = 0; i < products.size(); i++) {
             if (products.get(i).getName().equals(name)) {
-                Giohang.add(products.get(i));
+                cart.add(products.get(i));
+                turnover.add(products.get(i));
+                products.remove(i);
                 System.out.println("Thêm sản phẩm thành công");
-            } else {
-                System.out.println("Sản phẩm không tồn tại!");
+                ++choice;
+                break;
             }
+        }if (choice==0){
+            System.err.println("Sản phẩm không tồn tại!");
         }
-        readAndWrite.write(file1,Giohang);
+        readAndWrite.write(fileTurnover,turnover);
+        readAndWrite.write(file1, cart);
     }
 
     public void editProduct() {
-        System.out.println("Nhập tên sản phẩm muốn xóa khỏi cửa hàng :");
+        showProduct();
+        System.out.println(">Nhập tên sản phẩm muốn xóa khỏi giỏ hàng :");
         String name = scanner.nextLine();
-
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getName().equals(name)) {
-                Giohang.remove(i);
-                System.out.println("Xóa sản phẩm thành công");
-            } else {
-                System.out.println("Sản phẩm không tồn tại!");
+        int choice = 0 ;
+        for (int i = 0; i < cart.size()+1; i++) {
+            if (cart.get(i).getName().equals(name)) {
+                System.out.print("Xác nhận xóa sản phẩm : ");
+                System.out.print(" Y/N");
+                String x = scanner.nextLine();
+                if (x.equalsIgnoreCase("Y")){
+                    cart.remove(i);
+                    turnover.remove(i);
+                    System.out.println("Xóa sản phẩm thành công");
+                    ++choice;
+                    break;
+                }
             }
+        }if(choice == 0){
+            System.err.println("Sản phẩm không tồn tại!");
         }
-     readAndWrite.write(file1,Giohang);
+        readAndWrite.write(fileTurnover,turnover);
+        readAndWrite.write(file1, cart);
     }
+
+//    public void  show1(){
+//        for (int i = 0; i < products.size(); i++) {
+//            System.out.println(products.get(i).toString());
+//        }
+//    }
 
 
     public void showProduct() {
-        for (int i = 0; i < Giohang.size(); i++) {
-            System.out.println(Giohang.get(i).toString());
+        for (int i = 0; i < cart.size(); i++) {
+            System.out.println(cart.get(i).toString());
         }
         System.out.println("Tổng tiền giỏ hàng :"+ allmoney());
     }
 
     public double allmoney() {
-        double tongTien = 0.0;
+        int tongTien = 0;
 
-        for (int i = 0; i < Giohang.size(); i++) {
-            tongTien += Giohang.get(i).getPrice();
+        for (int i = 0; i < cart.size(); i++) {
+            tongTien += cart.get(i).getPrice();
         }
         return tongTien;
     }
@@ -151,11 +202,21 @@ public class ManagerProduct {
         System.out.println("Y/N");
         String x = scanner.nextLine();
         if (x.equalsIgnoreCase("Y")){
-        System.err.println("Thanh toán thành công !");
+        System.out.println("Thanh toán thành công !");
         }
-        Giohang = new ArrayList<>();
-        readAndWrite.write(file1,Giohang);
+        cart = new ArrayList<>();
+        readAndWrite.write(file1,cart);
+    }
+    public void sortProductsByPriceAscending(){
+        products.sort(new SoftByPriceAscending());
+        System.out.println("Sắp xếp tăng dần thành công ");
+        readAndWrite.write(file,products);
+    }
 
+    public void sortProductsByPriceDescending() {
+        products.sort(new SoftByPriceDescending());
+        System.out.println("Sắp xếp giảm dần thành công");
+        readAndWrite.write(file,products);
     }
 
 }
